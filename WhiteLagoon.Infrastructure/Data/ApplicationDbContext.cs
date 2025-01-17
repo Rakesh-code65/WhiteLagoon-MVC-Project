@@ -16,5 +16,13 @@ namespace WhiteLagoon.Infrastructure.Data
 
         }
         public DbSet<Villa> Villas { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //  base.OnModelCreating(modelBuilder);
+
+            modelBuilder.entity<Villa>().HasData();
+
+        }
     }
 }
