@@ -4,14 +4,16 @@
 	<div class="card-header bg-success bg-gradient ml-0 py-3">
 		<div class="row">
 			<div class="col-12 text-center">
-				<h2 class="text-white py-2">Create Villa List</h2>
+				<h2 class="text-white py-2">Update Villa List</h2>
 			</div>
 			<div class="card-body" border p-4"">
 				<form method="post" class="row">
+					<input asp-for="Id" hidden />
+
 					<div class="p-3">
 						<div asp-validation-summary="None"></div>
 						<div class="form-floating py-1 col-12">
-							<input asp-for="Name" class="form-control border shadow"/>
+							<input asp-for="Name" class="form-control border shadow" />
 							<label asp-for="Name" class="ms-2"></label>
 							<span asp-validation-for="Name" class="text-danger"></span>
 						</div>
@@ -43,30 +45,30 @@
 						<div claas="row pt-2">
 							<div class="col-6 col-md-3">
 								<button type="submit" class="btn btn-success w-80">
-									<i class="bi bi-plus-circle-fill"></i>  Create
+									<i class="bi bi-plus-circle-fill"></i> Update
 								</button>
-								</div>
-								<div class="col-6 col-md-3">
+							</div>
+							<div class="col-6 col-md-3">
 								<a asp-controlleer="Controller" asp-action="Index" class="btn btn-secondary w-80">
-										<i class="bi bi-x-circle"></i>  Cancel
+									<i class="bi bi-x-circle"></i>  Cancel
 								</a>
-								</div>	
-							
+							</div>
+
 						</div>
 
-						
+
 					</div>
 				</form>
 
 
-				</div>
-				</div>
-</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 
-@section Scripts{
-@{
-	<partial name="_ValidationScriptsPartial"/>
-}
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
 }
