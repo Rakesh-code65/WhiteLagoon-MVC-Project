@@ -7,11 +7,20 @@ namespace WhiteLagoon.Web.Controllers
     {
         //ApplicationDbContext app = new ApplicationDbContext()
         //{
-        //    // use this in net framework
+        //    // use this in net framework old  dotnet technology 
         //}
+        private readonly ApplicationDbContext _db;
+
+        public VillaController(ApplicationDbContext db)
+        {
+            _db = db;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var villas = _db.Villas.ToList();
+
+            return View(villas);
         }
     }
 }
