@@ -33,9 +33,17 @@ namespace WhiteLagoon.Web.Controllers
 
         
        {
-            _db.Villas.Add(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if (obj.Name == obj.Description)
+            {
+                ModelState.AddModelError("name", "The Decription Cannot exactly match the same.");
+            }
+            if (ModelState.IsValid)
+            {
+                _db.Villas.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }
