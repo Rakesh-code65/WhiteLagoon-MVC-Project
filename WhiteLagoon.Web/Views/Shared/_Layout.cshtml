@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="~/WhiteLagoon.Web.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
@@ -37,11 +38,22 @@
     <div class="container">
         <main role="main" class="pb-3">
             @if(TempData["error"] != null){
-                <div class="text-danger h3">@TempData["error"]</div>
+                <script src="~/lib/jquery/dist/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                <script type="text/javascript">
+                            toastr.success('@TempData["error"]');  // toastr notifications 
+
+                @* <div class="text-danger h3"></div> *@
+                </script>
             }
-            @if(TempData["error"] !=null)
+            @if(TempData["success"] !=null)
             {
-                <div class="text-danger h3">@TempData["success"]</div>
+                <script src="~/lib/jquery/dist/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                <script type="text/javascript">
+                         toastr.success('@TempData["success"]');  // toastr notifications
+               @*  <div class="text-danger h3">@TempData["success"]</div> *@
+                </script>
             }
             @RenderBody()
         </main>
