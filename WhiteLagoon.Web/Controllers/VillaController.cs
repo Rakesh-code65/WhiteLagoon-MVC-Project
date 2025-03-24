@@ -90,7 +90,7 @@ namespace WhiteLagoon.Web.Controllers
             {
                 _db.Villas.Remove(objFromDb);
                 _db.SaveChanges();
-                TempData["error"] = "The villa has been updated Successfully";
+                TempData["error"] = "The villa has been Deleted Successfully";
                 return RedirectToAction("Index");
             }
             return View();
