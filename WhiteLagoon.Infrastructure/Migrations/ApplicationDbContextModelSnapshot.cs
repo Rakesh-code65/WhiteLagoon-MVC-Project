@@ -154,27 +154,32 @@ namespace WhiteLagoon.Infrastructure.Migrations
                         new
                         {
                             Villa_Number = 101,
-                            VillaId = 1
+                            VillaId = 1,
+                            SpecialDetails = "Room"
                         },
                         new
                         {
                             Villa_Number = 102,
-                            VillaId = 2
+                            VillaId = 2,
+                            SpecialDetails = "Furnish Room"
                         },
                         new
                         {
                             Villa_Number = 103,
-                            VillaId = 3
+                            VillaId = 3,
+                            SpecialDetails = "Semi-Furnish Room"
                         },
                         new
                         {
                             Villa_Number = 201,
-                            VillaId = 1
+                            VillaId = 1,
+                            SpecialDetails = "Semi-Furnish Room"
                         },
                         new
                         {
                             Villa_Number = 202,
-                            VillaId = 2
+                            VillaId = 2,
+                            SpecialDetails = "Furnish Room"
                         },
                         new
                         {
@@ -184,7 +189,8 @@ namespace WhiteLagoon.Infrastructure.Migrations
                         new
                         {
                             Villa_Number = 301,
-                            VillaId = 2
+                            VillaId = 2,
+                            SpecialDetails = "Furnish Room"
                         },
                         new
                         {
