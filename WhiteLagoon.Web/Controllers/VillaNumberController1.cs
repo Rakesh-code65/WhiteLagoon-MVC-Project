@@ -26,7 +26,13 @@ namespace WhiteLagoon.Web.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            IEnumerable<SelectListItem> List = _db.Villas.ToList().Select(u=>  new SelectListItem
+            {
+                Text= u.Name,
+                Value = u.Id.ToString()
+            });
+
+            return View(list);
         }
         [HttpPost]
         public IActionResult Create(VillaNumber obj)
