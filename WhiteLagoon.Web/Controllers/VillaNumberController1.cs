@@ -41,7 +41,7 @@ namespace WhiteLagoon.Web.Controllers
             {
                 _db.VillaNumbers.Add(obj);
                 _db.SaveChanges();
-                TempData["success"] = "The villa has been Created Successfully";
+                TempData["success"] = "The villa Numbers has been Created Successfully";
                 return RedirectToAction("Index");
             }
             return View();
