@@ -33,6 +33,7 @@ namespace WhiteLagoon.Web.Controllers
 
 
         {
+           // ModelState.Remove("Villa");
             //if (obj.Name == obj.Description)
             //{
             //    ModelState.AddModelError("name", "The Decription Cannot exactly match the same.");
