@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using WhiteLagoon.Domain.Entities;
 using WhiteLagoon.Infrastructure.Data;
 using WhiteLagoon.Web.Models.ViewModels;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WhiteLagoon.Web.Controllers
 {
@@ -16,7 +18,7 @@ namespace WhiteLagoon.Web.Controllers
 
         public IActionResult Index()
         {
-            var villaNumbers = _db.VillaNumbers.ToList();
+            var villaNumbers = _db.VillaNumbers.Include(u=>u.Villa).ToList();
 
             return View(villaNumbers);
         }
@@ -45,23 +47,36 @@ namespace WhiteLagoon.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(VillaNumber obj)
+        public IActionResult Create(VillaNumberVM obj)
 
 
         {
-           // ModelState.Remove("Villa");
+            // ModelState.Remove("Villa");
             //if (obj.Name == obj.Description)
             //{
             //    ModelState.AddModelError("name", "The Decription Cannot exactly match the same.");
             //}
-            if (ModelState.IsValid)
+            bool roomNumberExists = _db.VillaNumbers.Any(u => u.Villa_Number == obj.VillaNumber.Villa_Number);
+
+            if (ModelState.IsValid && !roomNumberExists)
             {
-                _db.VillaNumbers.Add(obj);
+                _db.VillaNumbers.Add(obj.VillaNumber);
                 _db.SaveChanges();
                 TempData["success"] = "The villa Numbers has been Created Successfully";
                 return RedirectToAction("Index");
             }
-            return View();
+            if (roomNumberExists)
+            {
+                TempData["error"] = "The villa Number already exists";
+
+            }
+            obj.VillaList = _db.Villas.ToList().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            });
+            
+            return View(obj);
         }
 
         public IActionResult Update(int villaId)
