@@ -79,20 +79,48 @@ namespace WhiteLagoon.Web.Controllers
             return View(obj);
         }
 
-        public IActionResult Update(int villaId)
+        public IActionResult Update(int villaNumberId)
         {
-            Villa? obj = _db.Villas.FirstOrDefault(u => u.Id == villaId);
+            VillaNumberVM villaNumberVM = new()
+            {
+                VillaList = _db.Villas.ToList().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                }),
+                VillaNumber = _db.VillaNumbers.FirstOrDefault(u=> u.Villa_Number == villaNumberId)
+            };
+            //Villa? obj = _db.Villas.FirstOrDefault(u => u.Id == villaId);
             //Villa? obj = _db.Villas.Find(villaId);
             // var VillaList = _db.Villas.Where(u => u.Price > 50 && u.Occupancy > 0);
-            if (obj == null)
+            if (VillaNumberVM.VillaNumber == null)
             {
                 return RedirectToAction("Error", "Home");
             }
-            return View(obj);
+            return View(VillaNumberVM);
         }
         [HttpPost]
-        public IActionResult Update(Villa obj)
+        public IActionResult Update(VillaNumberVM villaNumberVM)
         {
+            bool roomNumberExists = _db.VillaNumbers.Any(u => u.Villa_Number == obj.VillaNumber.Villa_Number);
+
+            if (ModelState.IsValid && !roomNumberExists)
+            {
+                _db.VillaNumbers.Add(obj.VillaNumber);
+                _db.SaveChanges();
+                TempData["success"] = "The villa Numbers has been Created Successfully";
+                return RedirectToAction("Index");
+            }
+            if (roomNumberExists)
+            {
+                TempData["error"] = "The villa Number already exists";
+
+            }
+            obj.VillaList = _db.Villas.ToList().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            });
 
             if (ModelState.IsValid && obj.Id > 0)
             {
