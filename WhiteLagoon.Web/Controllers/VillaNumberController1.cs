@@ -1,21 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WhiteLagoon.Domain.Entities;
 using WhiteLagoon.Infrastructure.Data;
 
 namespace WhiteLagoon.Web.Controllers
 {
-    public class VillaNumberController : Controller
+    public class VillaNumberController(ApplicationDbContext db) : Controller
     {
         //ApplicationDbContext app = new ApplicationDbContext()
         //{
         //    // use this in net framework old  dotnet technology 
         //}
-        private readonly ApplicationDbContext _db;
-
-        public VillaNumberController(ApplicationDbContext db)
-        {
-            _db = db;
-        }
+        private readonly ApplicationDbContext _db = db;
 
         public IActionResult Index()
         {
@@ -26,13 +22,16 @@ namespace WhiteLagoon.Web.Controllers
 
         public IActionResult Create()
         {
-            IEnumerable<SelectListItem> List = _db.Villas.ToList().Select(u=>  new SelectListItem
+            IEnumerable<SelectListItem> list = _db.Villas.ToList().Select(u=>  new SelectListItem
             {
                 Text= u.Name,
                 Value = u.Id.ToString()
             });
 
-            return View(list);
+            //ViewData["VillaList"] = list;
+            ViewBag.VillaList = list;
+
+            return View();
         }
         [HttpPost]
         public IActionResult Create(VillaNumber obj)
