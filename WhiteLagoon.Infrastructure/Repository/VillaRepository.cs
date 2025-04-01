@@ -16,7 +16,7 @@ namespace WhiteLagoon.Infrastructure.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Villa> GetAll(Expression<Func<Villa, bool>>? filter = null, string? inlcudeProperties = null)
+        public IEnumerable<Villa> Get(Expression<Func<Villa, bool>>? filter = null, string? inlcudeProperties = null)
         {
             throw new NotImplementedException();
         }
