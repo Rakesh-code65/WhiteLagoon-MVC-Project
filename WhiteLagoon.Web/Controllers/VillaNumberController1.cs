@@ -9,14 +9,18 @@ using WhiteLagoon.Web.Models.ViewModels;
 
 namespace WhiteLagoon.Web.Controllers
 {
-    public class VillaNumberController(ApplicationDbContext db) : Controller
+    public class VillaNumberController : Controller
     {
         //ApplicationDbContext app = new ApplicationDbContext()
         //{
         //    // use this in net framework old  dotnet technology 
         //}
-        private readonly ApplicationDbContext _db = db;
+        private readonly ApplicationDbContext _db;
 
+        public VillaNumberController(ApplicationDbContext db)
+        {
+            _db = db;
+        }
         public IActionResult Index()
         {
             var villaNumbers = _db.VillaNumbers.Include(u=>u.Villa).ToList();
