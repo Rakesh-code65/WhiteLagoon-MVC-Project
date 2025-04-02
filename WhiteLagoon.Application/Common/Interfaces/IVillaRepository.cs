@@ -11,7 +11,7 @@ namespace WhiteLagoon.Application.Common.Interfaces
 {
     public interface IVillaRepository
     {
-        IEnumerable<Villa> Get(Expression<Func<Villa,bool>>? filter = null,string? inlcudeProperties = null);
+        Villa Get(Expression<Func<Villa,bool>>? filter = null,string? inlcudeProperties = null);
         IEnumerable<Villa> GetAll(Expression<Func<Villa, bool>> filter, string? inlcudeProperties = null);
         void Add(Villa entity);
         void Update(Villa entity);
