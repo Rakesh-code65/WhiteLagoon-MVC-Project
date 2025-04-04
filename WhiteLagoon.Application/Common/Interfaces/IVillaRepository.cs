@@ -9,13 +9,15 @@ using WhiteLagoon.Application.Common.Interfaces;
 
 namespace WhiteLagoon.Application.Common.Interfaces
 {
-    public interface IVillaRepository
+    public interface IVillaRepository : IRepository<Villa>
     {
-        Villa Get(Expression<Func<Villa, bool>>? filter = null, string? inlcudeProperties = null);
-        IEnumerable<Villa> GetAll(Expression<Func<Villa, bool>>? filter = null, string? inlcudeProperties = null);
-        void Add(Villa entity);
+        //Villa Get(Expression<Func<Villa, bool>>? filter = null, string? inlcudeProperties = null);
+        //IEnumerable<Villa> GetAll(Expression<Func<Villa, bool>>? filter = null, string? inlcudeProperties = null);
+
+        // implemeted generic repository.
+      
         void Update(Villa entity);
-        void Remove(Villa entity);
+      
         void Save();
     }
 }
