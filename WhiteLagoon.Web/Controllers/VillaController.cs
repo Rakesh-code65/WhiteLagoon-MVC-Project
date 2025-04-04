@@ -16,7 +16,7 @@ namespace WhiteLagoon.Web.Controllers
         public IActionResult Index()
         {
             //var villas = _db.Villas.ToList();
-            var villas = _villaRepo.Get();
+            var villas = _villaRepo.GetAll();
 
             return View(villas);
         }
