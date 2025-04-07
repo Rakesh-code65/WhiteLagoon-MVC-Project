@@ -8,7 +8,7 @@ using WhiteLagoon.Domain.Entities;
 
 namespace WhiteLagoon.Application.Common.Interfaces
 {
-    public interface IRepository<> where T : class 
+    public interface IRepository<T> where T : class 
     {
         T Get(Expression<Func<T, bool>>? filter = null, string? inlcudeProperties = null);
         IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? inlcudeProperties = null);

@@ -10,14 +10,14 @@ using WhiteLagoon.Infrastructure.Data;
 
 namespace WhiteLagoon.Infrastructure.Repository
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : Repository<T> where T : class
     {
         private readonly ApplicationDbContext _db;
         internal DbSet<T> dbSet;
         public Repository(ApplicationDbContext db)
         {
             _db = db;
-            dbSet = db.Set<T>();
+            dbSet = _db.Set<T>();
         }
         public void Add(T entity)
         {
@@ -27,7 +27,7 @@ namespace WhiteLagoon.Infrastructure.Repository
         public T Get(System.Linq.Expressions.Expression<Func<T, bool>>? filter = null, string? inlcudeProperties = null)
         {
             IQueryable<T> query = dbSet;
-            if (filter != null)
+            if (filter != null)  
             {
                 query = query.Where(filter);
             }
@@ -51,7 +51,7 @@ namespace WhiteLagoon.Infrastructure.Repository
             }
             if (!string.IsNullOrEmpty(inlcudeProperties))
             {
-                
+
                 foreach (var includeProp in inlcudeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(includeProp);
@@ -59,10 +59,14 @@ namespace WhiteLagoon.Infrastructure.Repository
             }
             return query.ToList();
         }
+        public void Save()
+        {
+            _db.SaveChanges();
+        }
 
         public void Remove(T entity)
         {
-            dbSet.Remove();
+            dbSet.Remove(entity);
         }
 
         
