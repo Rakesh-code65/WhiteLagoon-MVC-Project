@@ -25,6 +25,7 @@ namespace WhiteLagoon.Infrastructure.Repository
         //{
         //        _db.Add(entity);
         //}
+        //we are moving these codes with a generic repository and we are using the generic repository in the controller. and then implement that in villa repository.
 
         //public Villa Get(Expression<Func<Villa, bool>>? filter, string? inlcudeProperties = null)
         //{
@@ -67,14 +68,14 @@ namespace WhiteLagoon.Infrastructure.Repository
         //        _db.Remove(entity);
         //}
 
-        public void Save()
-        {
-            _db.SaveChanges();
-        }
+        //public void Save()
+        //{
+        //    _db.SaveChanges();
+        //}
 
         public void Update(Villa entity)
         {
-                _db.Villas.Update(entity);
+            _db.Villas.Update(entity);
         }
     }
 

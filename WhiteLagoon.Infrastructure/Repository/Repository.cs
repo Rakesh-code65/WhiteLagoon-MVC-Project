@@ -10,7 +10,7 @@ using WhiteLagoon.Infrastructure.Data;
 
 namespace WhiteLagoon.Infrastructure.Repository
 {
-    public class Repository<T> : Repository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         private readonly ApplicationDbContext _db;
         internal DbSet<T> dbSet;
@@ -69,6 +69,9 @@ namespace WhiteLagoon.Infrastructure.Repository
             dbSet.Remove(entity);
         }
 
-        
+        public void Update(T entity)
+        {
+            dbSet.Update(entity);
+        }
     }
 }
