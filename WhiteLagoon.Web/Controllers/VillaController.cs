@@ -45,7 +45,7 @@ namespace WhiteLagoon.Web.Controllers
                 _unitOfWork.Villa.Add(obj);
                 //db.SaveChanges();
                /* _villaRepo.Save();*/ //model save implementation
-                _unitOfWork.Villa.Save();
+                _unitOfWork.Save();
                 TempData["success"] = "The villa has been Created Successfully";
                 return RedirectToAction(nameof(Index));
             }
@@ -55,9 +55,12 @@ namespace WhiteLagoon.Web.Controllers
         public IActionResult Update(int villaId)
         {
             //Villa? obj = db.Villas.FirstOrDefault(u => u.Id == villaId);
+
             Villa? obj = _unitOfWork.Villa.Get(u => u.Id == villaId);
+
             //Villa? obj = _db.Villas.Find(villaId);
             // var VillaList = _db.Villas.Where(u => u.Price > 50 && u.Occupancy > 0);
+
             if (obj == null)
             {
                 return RedirectToAction("Error", "Home");
@@ -74,7 +77,7 @@ namespace WhiteLagoon.Web.Controllers
                 /*_villaRepo.Update(obj); */ // model implementation of update
                 _unitOfWork.Villa.Update(obj);
                 //db.SaveChanges();
-                _unitOfWork.Villa.Save();
+                _unitOfWork.Save();
                 /*_villaRepo.Save();  */  // model implementation of update
                 TempData["success"] = "The villa has been updated Successfully";
                 return RedirectToAction(nameof(Index));
@@ -103,7 +106,7 @@ namespace WhiteLagoon.Web.Controllers
                 //db.Villas.Remove(objFromDb);
                 _unitOfWork.Villa.Remove(objFromDb);
                 //db.SaveChanges();
-                _unitOfWork.Villa.Save();
+                _unitOfWork.Save();
                 TempData["error"] = "The villa has been Deleted Successfully";
                 return RedirectToAction(nameof(Index));
             }
