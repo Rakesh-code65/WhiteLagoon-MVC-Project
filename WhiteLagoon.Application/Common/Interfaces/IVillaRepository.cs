@@ -15,9 +15,10 @@ namespace WhiteLagoon.Application.Common.Interfaces
         //IEnumerable<Villa> GetAll(Expression<Func<Villa, bool>>? filter = null, string? inlcudeProperties = null);
 
         // implemeted generic repository.
-      
-        void Update(Villa entity);
-      
-        void Save();
+
+        //void Update(Villa entity);
+
+        //void Save();
+        //void Save();
     }
 }
