@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,10 @@ namespace WhiteLagoon.Infrastructure.Repository
         public void Add(T entity)
         {
             dbSet.Add(entity);
+        }
+        public bool Any(Expression<Func<T,bool>> filter)
+        {
+            return dbSet.Any(filter);
         }
 
         public T Get(System.Linq.Expressions.Expression<Func<T, bool>>? filter = null, string? inlcudeProperties = null)
