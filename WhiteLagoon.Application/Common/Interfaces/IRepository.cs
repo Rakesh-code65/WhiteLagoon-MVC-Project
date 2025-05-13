@@ -13,6 +13,7 @@ namespace WhiteLagoon.Application.Common.Interfaces
         T Get(Expression<Func<T, bool>>? filter = null, string? inlcudeProperties = null);
         IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? inlcudeProperties = null);
         void Add(T entity);
+        bool Any(Expression<Func<T, bool>> filter);
         void Update(T entity);
         void Remove(T entity);
         void Save();
