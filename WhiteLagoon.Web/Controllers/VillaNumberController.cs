@@ -32,7 +32,7 @@ namespace WhiteLagoon.Web.Controllers
         {
             //var villaNumbers = _db.VillaNumbers.Include(u=>u.Villa).ToList();
             //replaced with the new words i.e, unitofwork
-            var villaNumbers = _unitOfWork.VillaNumber.GetAll();
+            var villaNumbers = _unitOfWork.VillaNumber.GetAll(inlcudeProperties: "Villa");
             // This will be property name of IVillaRepository inside the IUnitofWork interface.
             return View(villaNumbers);
         }
@@ -95,7 +95,7 @@ namespace WhiteLagoon.Web.Controllers
             
             return View(obj);
         }
-
+       
         public IActionResult Update(int villaNumberId)
         {
             VillaNumberVM villaNumberVM = new()

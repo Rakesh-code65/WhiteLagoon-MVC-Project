@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using WhiteLagoon.Application.Common.Interfaces;
 using WhiteLagoon.Domain.Entities;
 using WhiteLagoon.Infrastructure.Data;
@@ -11,10 +12,13 @@ namespace WhiteLagoon.Web.Controllers
     {
         //private readonly IVillaRepository _villaRepo;
         private readonly IUnitOfWork _unitOfWork;
-        public VillaController(IUnitOfWork unitOfWork)
+        private readonly IWebHostEnvironment _webHostEnvironment; // FOR IMAGE TO UPLOAD
+
+        public VillaController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             //_villaRepo = villaRepo;
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
         {
@@ -40,9 +44,27 @@ namespace WhiteLagoon.Web.Controllers
             }
             if (ModelState.IsValid)
             {
-                //db.Villas.Add(obj);
-               /* _villaRepo.Add(obj); *///model implementation
-                _unitOfWork.Villa.Add(obj);
+                //Image part started
+                if (obj.Image != null)
+                {
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(obj.Image.FileName);
+                    string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, @"images\VillaImage");
+
+                    using var fileStream = new FileStream(Path.Combine(imagePath, fileName), FileMode.Create);
+                    obj.Image.CopyTo(fileStream);
+
+                    obj.ImageUrl = @"\images\VillaImage\" + fileName;
+
+                }
+                else
+                {
+                    obj.ImageUrl = "";
+
+                }
+                // Image  upload part ended here.
+                    //db.Villas.Add(obj);
+                    /* _villaRepo.Add(obj); *///model implementation
+                    _unitOfWork.Villa.Add(obj);
                 //db.SaveChanges();
                /* _villaRepo.Save();*/ //model save implementation
                 _unitOfWork.Save();
