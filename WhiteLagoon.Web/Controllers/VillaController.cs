@@ -103,7 +103,12 @@ namespace WhiteLagoon.Web.Controllers
 
                     if (!string.IsNullOrEmpty(obj.ImageUrl))
                     {
-                        var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath,obj.ImageUrl)
+                        var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, obj.ImageUrl.Trim('\\'));
+
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
                     }
 
                     using var fileStream = new FileStream(Path.Combine(imagePath, fileName), FileMode.Create);
@@ -112,11 +117,7 @@ namespace WhiteLagoon.Web.Controllers
                     obj.ImageUrl = @"\images\VillaImage\" + fileName;
 
                 }
-                else
-                {
-                    obj.ImageUrl = "https://placehold.co/600*400";
-
-                }
+               
 
                 //db.Villas.Update(obj);
                 /*_villaRepo.Update(obj); */ // model implementation of update
@@ -148,6 +149,16 @@ namespace WhiteLagoon.Web.Controllers
 
             if (objFromDb is not null)
             {
+
+                if (!string.IsNullOrEmpty(objFromDb.ImageUrl))
+                {
+                    var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, objFromDb.ImageUrl.Trim('\\'));
+
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
                 //db.Villas.Remove(objFromDb);
                 _unitOfWork.Villa.Remove(objFromDb);
                 //db.SaveChanges();
