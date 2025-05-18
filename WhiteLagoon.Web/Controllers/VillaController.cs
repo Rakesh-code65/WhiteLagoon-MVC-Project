@@ -58,7 +58,7 @@ namespace WhiteLagoon.Web.Controllers
                 }
                 else
                 {
-                    obj.ImageUrl = "";
+                    obj.ImageUrl = "https://placehold.co/600*400";
 
                 }
                 // Image  upload part ended here.
@@ -95,6 +95,29 @@ namespace WhiteLagoon.Web.Controllers
 
             if (ModelState.IsValid && obj.Id > 0)
             {
+
+                if (obj.Image != null)
+                {
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(obj.Image.FileName);
+                    string imagePath = Path.Combine(_webHostEnvironment.WebRootPath, @"images\VillaImage");
+
+                    if (!string.IsNullOrEmpty(obj.ImageUrl))
+                    {
+                        var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath,obj.ImageUrl)
+                    }
+
+                    using var fileStream = new FileStream(Path.Combine(imagePath, fileName), FileMode.Create);
+                    obj.Image.CopyTo(fileStream);
+
+                    obj.ImageUrl = @"\images\VillaImage\" + fileName;
+
+                }
+                else
+                {
+                    obj.ImageUrl = "https://placehold.co/600*400";
+
+                }
+
                 //db.Villas.Update(obj);
                 /*_villaRepo.Update(obj); */ // model implementation of update
                 _unitOfWork.Villa.Update(obj);
