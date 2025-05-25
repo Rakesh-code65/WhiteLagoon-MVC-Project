@@ -146,23 +146,24 @@ namespace WhiteLagoon.Infrastructure.Data
                     }
                 );
 
-            modelBuilder.Entity<Amenity>().HasData(
-                new Amenity
-                {
-                    Id = 1,
-                    Name = "Free Wi-Fi",
-                    Description = "Complimentary high-speed internet access throughout the villa.",
-                    VillaId = 1
-                },
+          
+      
 modelBuilder.Entity<Amenity>().HasData(
-
+        new Amenity
+        {
+            Id = 1,
+            Name = "Private Pool",
+            Description = "Enjoy exclusive access to a private swimming pool.",
+            VillaId = 1
+        },
     new Amenity
     {
         Id = 2,
-        Name = "Private Pool",
-        Description = "Enjoy exclusive access to a private swimming pool.",
+        Name = "WiFi",
+        Description = "Stay connected with high-speed wireless internet access.",
         VillaId = 2
     },
+
     new Amenity
     {
         Id = 3,
@@ -203,23 +204,25 @@ modelBuilder.Entity<Amenity>().HasData(
         Id = 8,
         Name = "Fireplace",
         Description = "Cozy up by the fireplace on cool evenings.",
-        VillaId = 1
+        VillaId = 8
     },
     new Amenity
     {
         Id = 9,
         Name = "Balcony",
         Description = "Enjoy beautiful views from your private balcony.",
-        VillaId = 2
+        VillaId = 9
     },
     new Amenity
     {
         Id = 10,
         Name = "BBQ Grill",
         Description = "Outdoor BBQ grill for family cookouts.",
-        VillaId = 3
-    },
+        VillaId = 10
+    }
 );
+
+
 
         }
     }
