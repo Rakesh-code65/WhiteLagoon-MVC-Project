@@ -45,9 +45,7 @@ namespace WhiteLagoon.Infrastructure.Migrations
                     { 5, "Relax in a luxurious private hot tub.", "Hot Tub", 5 },
                     { 6, "Access streaming services and cable on a large smart TV.", "Smart TV", 6 },
                     { 7, "In-unit washer and dryer for your convenience.", "Washer & Dryer", 7 },
-                    { 8, "Cozy up by the fireplace on cool evenings.", "Fireplace", 8 },
-                    { 9, "Enjoy beautiful views from your private balcony.", "Balcony", 9 },
-                    { 10, "Outdoor BBQ grill for family cookouts.", "BBQ Grill", 10 }
+                    
                 });
 
             migrationBuilder.UpdateData(
