@@ -198,28 +198,8 @@ modelBuilder.Entity<Amenity>().HasData(
         Name = "Washer & Dryer",
         Description = "In-unit washer and dryer for your convenience.",
         VillaId = 7
-    },
-    new Amenity
-    {
-        Id = 8,
-        Name = "Fireplace",
-        Description = "Cozy up by the fireplace on cool evenings.",
-        VillaId = 8
-    },
-    new Amenity
-    {
-        Id = 9,
-        Name = "Balcony",
-        Description = "Enjoy beautiful views from your private balcony.",
-        VillaId = 9
-    },
-    new Amenity
-    {
-        Id = 10,
-        Name = "BBQ Grill",
-        Description = "Outdoor BBQ grill for family cookouts.",
-        VillaId = 10
     }
+    
 );
 
 
