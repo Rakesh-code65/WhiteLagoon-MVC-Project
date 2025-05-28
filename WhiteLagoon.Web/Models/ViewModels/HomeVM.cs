@@ -1,4 +1,6 @@
-﻿namespace WhiteLagoon.Web.Models.ViewModels
+﻿using WhiteLagoon.Domain.Entities;
+namespace WhiteLagoon.Web.Models.ViewModels
+
 {
     public class HomeVM
     {
